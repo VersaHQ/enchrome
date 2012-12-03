@@ -12,13 +12,13 @@ var candidate_search = function(possibles) {
         var candidates = JSON.parse(request.responseText);
         //callback(candidates);
         var results = document.getElementById("results");
+        results.innerHTML = '';
         for(; i < candidates.length; i+=1) {
-          console.log('hello mutha fucka '+candidates[i].name);
           results.innerHTML += '<p>'+candidates[i].name+' '+candidates[i].title+'</p>';
         }
       } else {
-        console.log("Couldn't find politicians...");
-        callback(null);
+        results.innerHTML = '<p>Couldn\'t find politicians...</p>';
+        // callback(null);
       }
     }
   };
