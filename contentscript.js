@@ -1,5 +1,7 @@
 var ElectNext = (function(window, undefined) {
   
+  var blacklist = ['Senate','Majority','Leader','Sen','House','Congress','Speaker'];
+  
   var clean_matches = function(str_arr) {
     var i = 0;
     for(; i < str_arr.length; i+=1) {
@@ -9,7 +11,9 @@ var ElectNext = (function(window, undefined) {
   };
 
   var scrape_page = function() {
-    var body_text = document.body.innerText;
+    var blacklist_regex = new RegExp(blacklist.join('|'), "g");
+    console.log(blacklist_regex);
+    var body_text = document.body.innerText.replace(blacklist_regex,'');
     return clean_matches(body_text.match(/([A-Z][a-z]+(\s|\W)){2}/g));
   };
   
@@ -21,7 +25,6 @@ var ElectNext = (function(window, undefined) {
 
 if (window == top) {
   chrome.extension.onRequest.addListener(function(req, sender, sendResponse) {
-    console.log('hERRROOOooo');
     sendResponse(ElectNext.scrape_page());
   });
 }
