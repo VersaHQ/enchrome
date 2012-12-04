@@ -14,7 +14,9 @@
   "permissions": [
     "tabs",
     "https://electnext.dev/*",
-    "http://electnext.dev/*"
+    "http://electnext.dev/*",
+    "https://electnext.com/*",
+    "http://electnext.com/*"
   ],
   "browser_action": {
     "default_title": "Scan for politicians on this page",
