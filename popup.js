@@ -20,16 +20,19 @@ var candidate_search = function(possibles, callback) {
 };
 
 var display_results = function(candidates) {
-  var i = 0, results;
+  var i = 0, results, return_html = '';
   results = document.getElementById("results");
   results.innerHTML = '';
   if(candidates) {
+    return_html = '<ul class="enchrome-result-list">';
     for(; i < candidates.length; i+=1) {
-      results.innerHTML += '<p>'+candidates[i].name+' '+(candidates[i].title || '')+'</p>';
+      return_html += '<li class="group"><strong class="left">'+candidates[i].name+'</strong> <span class="right">'+(candidates[i].title || '')+'</span></li>';
     }
+    return_html += '</ul>';
   } else {
-    results.innerHTML = '<p>Couldn\'t find politicians...</p>';
+    return_html = '<p>Couldn\'t find politicians...</p>';
   }
+  results.innerHTML = return_html;
 };
 
 

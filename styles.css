@@ -1,4 +1,29 @@
 #results {
-  width: 300px;
+  width: 400px;
   font-family: Helvetica, Arial, sans;
+}
+
+.enchrome-result-list {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.enchrome-result-list li {
+  border-bottom: 1px solid #efefef;
+  line-height: 40px;
+}
+
+.enchrome-result-list li .left {
+  float: left;
+}
+
+.enchrome-result-list li .right {
+  float: right;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
 }
