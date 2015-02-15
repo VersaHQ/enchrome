@@ -1,6 +1,18 @@
 var ElectNext = (function(window, undefined) {
   
-  var blacklist = ['Senate','Majority','Leader','Sen','House','Congress','Speaker'];
+  var blacklist = ['President','Senate','Majority','Leader','Sen.','Minority','Congress','Speaker',
+    'Governor','Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware',
+    'District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa',
+    'Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota',
+    'Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico',
+    'New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island',
+    'South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
+    'West Virginia','Wisconsin','Wyoming'];
+  var blacklist_regex = new RegExp(blacklist.join('|').replace(' ','\ '), 'g');
+  
+  // Good explanation: http://stackoverflow.com/questions/7653942/find-names-with-regular-expression
+  var name_scanner_regex = /[A-Z]([a-z]+|\.)(?:\s+[A-Z]([A-Za-z]+|\.))/g;
+  
   
   var clean_matches = function(str_arr) {
     var i = 0;
@@ -11,10 +23,9 @@ var ElectNext = (function(window, undefined) {
   };
 
   var scrape_page = function() {
-    var blacklist_regex = new RegExp(blacklist.join('|'), "g");
-    console.log(blacklist_regex);
+    //console.log(blacklist_regex);
     var body_text = document.body.innerText.replace(blacklist_regex,'');
-    return clean_matches(body_text.match(/([A-Z][a-z]+(\s|\W)){2}/g));
+    return clean_matches(body_text.match(name_scanner_regex));
   };
   
   
